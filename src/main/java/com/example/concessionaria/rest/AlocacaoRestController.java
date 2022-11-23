@@ -31,7 +31,7 @@ public class AlocacaoRestController {
 	@Autowired
 	ConcessionariasRepository concRep;
 	
-	@RequestMapping(value = "", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	ResponseEntity<Object>chamar(){
 		return new ResponseEntity<Object>(rep.findAll(), HttpStatus.OK);
 	}
@@ -46,7 +46,7 @@ public class AlocacaoRestController {
 		}
 	}
 	
-	@RequestMapping(value = "/achaauto/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/achaauto/{id}", method = RequestMethod.GET)
 	ResponseEntity<Object>concAuto(@PathVariable("id") Long id){
 		
 		if (id != null) {

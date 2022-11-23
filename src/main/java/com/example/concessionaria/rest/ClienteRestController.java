@@ -21,7 +21,7 @@ public class ClienteRestController {
 	@Autowired
 	ClientesRepository rep;
 	
-	@RequestMapping(value = "", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	ResponseEntity<Object>chamar(){
 		return new ResponseEntity<Object>(rep.findAll(), HttpStatus.OK);
 	}
