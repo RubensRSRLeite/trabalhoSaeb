@@ -17,7 +17,7 @@ public class Automoveis {
 	
 	private String nome;
 	
-	private Long preco;
+	private String preco;
 	
 
 }
