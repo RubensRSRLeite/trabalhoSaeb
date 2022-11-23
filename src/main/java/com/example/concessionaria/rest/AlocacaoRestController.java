@@ -1,6 +1,7 @@
 package com.example.concessionaria.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.concessionaria.model.Alocacao;
 import com.example.concessionaria.repository.AlocacaoRepository;
+import com.example.concessionaria.repository.AutomoveisRepository;
 import com.example.concessionaria.repository.ConcessionariasRepository;
 
 @RestController
@@ -53,6 +55,16 @@ public class AlocacaoRestController {
 			return new ResponseEntity<Object>("sem id de carro", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
+	}
+	
+	@RequestMapping(value = "/venda/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<Object>venda(@PathVariable("id") Long id){
+		Optional<Alocacao> qtt = rep.findById(id);
+		qtt.get().setQuantidade(qtt.get().getQuantidade()-1);
+		Alocacao alocacao = new Alocacao();
+		alocacao.setQuantidade(qtt.get().getQuantidade());
+		rep.save(alocacao);
+		return new ResponseEntity<Object>("sucesso", HttpStatus.OK);
 	}
 	
 }
